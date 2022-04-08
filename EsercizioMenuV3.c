@@ -1,6 +1,23 @@
 #include <stdio.h>
 #include <limits.h>
-int Ricerca(int indice, int numeri[])
+void VisualizzaContrario(int indice, int numeri[])
+{
+    for(int j = indice; j >= 0; j--)
+    {
+        printf("%d \n", numeri[j]);
+    }
+    Menu(indice, numeri);
+}
+void InserimentoPreciso(int indice, int numeri[])
+{
+    int indiceIns;
+    printf("Inserire indice del valore da inserire \n");
+    scanf("%d", &indiceIns);
+    printf("Inserisci il valore \n");
+    scanf("%d", &numeri[indiceIns]);
+    Menu(indice, numeri);
+}
+void Ricerca(int indice, int numeri[])
 {
     int valoreRichiesto, nBool, k;
     printf("Inserisci valore da ricercare \n");
@@ -9,7 +26,7 @@ int Ricerca(int indice, int numeri[])
     {
         if(numeri[k] == valoreRichiesto)
         {
-            nBool = 1
+            nBool = 1;
             break;
         }
         else
@@ -20,11 +37,23 @@ int Ricerca(int indice, int numeri[])
 
     if(nBool == 1)
     {
-        printf("Numero trovato in posizione %d", k);
+        printf("Numero trovato in posizione %d \n", k);
     }
     else if (nBool == 0)
     {
-        printf("Numero non trovato");
+        printf("Numero non trovato \n");
+    }
+    Menu(indice, numeri);
+}
+void Elimina(int indice, int numeri[])
+{
+    int indiceEli;
+    printf("Inserire indice del valore da eliminare \n");
+    scanf("%d", &indiceEli);
+    for(int l = 1; l < indice; l++)
+    {
+        numeri[indiceEli] = numeri[l + indiceEli];
+        indiceEli++;
     }
     Menu(indice, numeri);
 }
@@ -61,6 +90,8 @@ void Menu(int indice, int *numeri[])
     printf("Premere 3 per modificare un elemento\n");
     printf("Premere 4 per eliminare un elemento\n");
     printf("premere 5 per ricercare un elemento\n");
+    printf("premere 6 per inserire un elemento in una certa posizione\n");
+    printf("premere 7 per mostrare il contenuto dell'array all'inverso\n");
     printf("premere 0 per terminare\n");
     scanf("%d", &scelta);
     if(scelta == 1)
@@ -77,15 +108,19 @@ void Menu(int indice, int *numeri[])
     }
     else if(scelta == 4)
     {
-        //Elimina(indice, numeri);
+        Elimina(indice, numeri);
     }
     else if(scelta == 5)
     {
         Ricerca(indice, numeri);
     }
-    else if(scelta == 5)
+    else if(scelta == 6)
     {
-        //Termina(indice, numeri);
+        InserimentoPreciso(indice, numeri);
+    }
+    else if(scelta == 7)
+    {
+        VisualizzaContrario(indice, numeri);
     }
 }
 int main(int argc, char *argv[])
