@@ -3,7 +3,7 @@
 int Ricerca(int indice, int numeri[])
 {
     int valoreRichiesto, nBool, k;
-    printf("Inserisci valore da ricercare");
+    printf("Inserisci valore da ricercare \n");
     scanf("%d", &valoreRichiesto);
     for(k = 0; k < indice; k++)
     {
@@ -26,6 +26,7 @@ int Ricerca(int indice, int numeri[])
     {
         printf("Numero non trovato");
     }
+    Menu(indice, numeri);
 }
 void Modifica(int indice, int numeri[])
 {
